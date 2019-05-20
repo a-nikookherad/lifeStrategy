@@ -15,7 +15,6 @@ class CreateWhoPostsCategoriesTable extends Migration
 	{
 		Schema::create('who_posts_categories' , function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->foreign("id")->references("catID")->on("who_posts")->onDelete("cascade");
 			$table->string('title');
 			$table->string('status' , 15);
 			$table->timestamps();

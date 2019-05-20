@@ -15,7 +15,7 @@ class CreateTasksPostsTable extends Migration
 	{
 		Schema::create('tasks_posts' , function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->integer('userID');
+			$table->bigInteger('userID')->unsigned();
 			$table->foreign("userId")->references("id")->on("users")->onDelete("cascade");
 			$table->string('img');
 			$table->string('title');

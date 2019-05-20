@@ -15,7 +15,7 @@ class CreateWhoPostsTable extends Migration
 	{
 		Schema::create('who_posts' , function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->bigInteger('userID');
+			$table->bigInteger('userID')->unsigned();
 			$table->foreign("userID")->references("id")->on("users")->onDelete("cascade");
 			$table->string('img');
 			$table->string('title');
