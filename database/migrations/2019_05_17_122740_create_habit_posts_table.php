@@ -16,6 +16,7 @@ class CreateHabitPostsTable extends Migration
 		Schema::create('habit_posts' , function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->integer('userID');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
 			$table->string('img');
 			$table->string('title');
 			$table->integer('type');

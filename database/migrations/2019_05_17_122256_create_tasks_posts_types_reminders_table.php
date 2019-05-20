@@ -15,6 +15,7 @@ class CreateTasksPostsTypesRemindersTable extends Migration
 	{
 		Schema::create('tasks_posts_types_reminders' , function (Blueprint $table) {
 			$table->bigIncrements('id');
+			$table->foreign("id")->references("reminder")->on("tasks_posts_types")->onDelete("cascade");
 			$table->string('title');
 			$table->string('status' , 15);
 			$table->timestamps();

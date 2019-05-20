@@ -16,6 +16,7 @@ class CreateGoalPostsTable extends Migration
 		Schema::create('goal_posts' , function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->integer('userID');
+			$table->foreign("userID")->references("id")->on("users")->onDelete("cascade");
 			$table->string('img');
 			$table->string('title');
 			$table->integer('areaOfLife');

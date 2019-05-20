@@ -15,6 +15,7 @@ class CreateTasksPostsProjectsTable extends Migration
 	{
 		Schema::create('tasks_posts_projects' , function (Blueprint $table) {
 			$table->bigIncrements('id');
+			$table->foreign("id")->references("project")->on("tasks_posts")->onDelete("cascade");
 			$table->string('title');
 			$table->string('status' , 15);
 			$table->timestamps();

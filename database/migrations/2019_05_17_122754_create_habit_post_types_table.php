@@ -15,6 +15,7 @@ class CreateHabitPostTypesTable extends Migration
 	{
 		Schema::create('habit_post_types' , function (Blueprint $table) {
 			$table->bigIncrements('id');
+			$table->foreign("id")->references("type")->on("habit_posts")->onDelete("cascade");
 			$table->string('tableName');
 			$table->string('tableRecord');
 			$table->string('typeTitle');

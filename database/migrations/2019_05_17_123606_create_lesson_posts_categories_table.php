@@ -15,6 +15,7 @@ class CreateLessonPostsCategoriesTable extends Migration
 	{
 		Schema::create('lesson_posts_categories' , function (Blueprint $table) {
 			$table->bigIncrements('id');
+			$table->foreign('id')->references('category')->on('lesson_posts')->onDelete("cascade");
 			$table->string('title');
 			$table->timestamps();
 			$table->string('status' , 15);
