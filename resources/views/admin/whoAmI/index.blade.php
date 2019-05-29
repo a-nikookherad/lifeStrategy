@@ -31,7 +31,50 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            core value
+            <table id="table_id" class="display">
+                <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 2</th>
+                    <th>Column 2</th>
+                    <th>Column 2</th>
+                    <th>Column 2</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{--list data goes here--}}
+                </tbody>
+            </table>
+            @push("styles")
+                <link rel="stylesheet" type="text/css" href="/css/datatables.min.css">
+            @endpush
+            @push("header_js")
+                <script type="text/javascript" charset="utf8" src="/js/jquery.min.js"></script>
+                <script type="text/javascript" charset="utf8" src="/js/datatables.min.js"></script>
+                <script>
+                    var $ = require('jquery');
+                    var dt = require('datatables.net')();
+                    $(document).ready(function () {
+                        $('#myTable').DataTable({
+                            ajax: {
+                                url: './admin/shoAmI/partials/list.php',
+                                dataSrc: 'data'
+                            },
+                            columns: [
+                                "name",
+                                "position",
+                                "salary",
+                                "start_date",
+                                "office",
+                                "extn"
+                            ]
+                        });
+                    });
+                </script>
+            @endpush
+
+            @include("admin.whoAmI.partials.insert",["title"=>"add core value"])
         </div>
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             tab2

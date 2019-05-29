@@ -15,6 +15,8 @@
     <!-- THEME STYLES-->
     <link href="{{asset("admin/assets/css/main.min.css")}}" rel="stylesheet"/>
     <!-- PAGE LEVEL STYLES-->
+    @stack("styles")
+    @stack("header_js")
 </head>
 
 <body class="fixed-navbar">
@@ -215,7 +217,7 @@
                 </li>--}}
                 {{--<li class="heading">FEATURES</li>--}}
                 <li>
-                    <a href="{{route("dashboard/whoami")}}"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                    <a href="{{route("whoPosts.index")}}"><i class="sidebar-item-icon fa fa-bookmark"></i>
                         <span class="nav-label">Who Am I?</span><i class="fa fa-angle-left arrow"></i></a>
                     {{--                    <ul class="nav-2-level collapse">
                                             <li>
@@ -470,6 +472,7 @@
 <script src="{{asset("admin/assets/js/app.min.js")}}" type="text/javascript"></script>
 <!-- PAGE LEVEL SCRIPTS-->
 <script src="{{asset("admin/assets/js/scripts/dashboard_1_demo.js")}}" type="text/javascript"></script>
+@stack("scripts")
 </body>
 
 </html>

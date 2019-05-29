@@ -10,7 +10,7 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |.sass('resources/sass/app.scss', 'public/css')
  */
-mix.js('resources/js/main.js', 'resources/js/allInOne.js');
+mix.js('resources/js/main.js', 'js/allInOne.js');
 /* mix.scripts([
    'resources/js/myFiles/jquery.min.js',
     'resources/js/myFiles/bootstrap.bundle.min.js',
@@ -20,11 +20,12 @@ mix.js('resources/js/main.js', 'resources/js/allInOne.js');
     'resources/js/main.js'],
     'public/js/main.min.js');*/
 // mix.sass('resources/sass/app.scss', 'public/css');
-/*mix.styles([
+mix.styles([
     'resources/sass/myFiles/bootstrap.min.css',
     'resources/sass/myFiles/bootstrap-rtl.min.css',
     'resources/sass/myFiles/bootstrap-select.min.css',
     'resources/sass/myFiles/all.min.css',
+        // 'resources/sass/myFiles/jquery.dataTables.min.css',
     'resources/sass/app.scss',
 ],
-    'public/css/main.min.css');*/
+    'public/css/main.min.css');

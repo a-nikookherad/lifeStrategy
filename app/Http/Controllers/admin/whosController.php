@@ -16,6 +16,7 @@ class whosController extends Controller
 	public function index()
 	{
 		//
+		return view("admin.whoAmI.index");
 	}
 
 	/**
@@ -45,9 +46,10 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(whoPost $whoPost)
+	public function show(whoPosts $whoPosts)
 	{
 		//
+
 	}
 
 	/**
@@ -56,7 +58,7 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(whoPost $whoPost)
+	public function edit(whoPosts $whoPosts)
 	{
 		//
 	}
@@ -68,7 +70,7 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request , whoPost $whoPost)
+	public function update(Request $request , whoPosts $whoPosts)
 	{
 		//
 	}
@@ -79,7 +81,7 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(whoPost $whoPost)
+	public function destroy(whoPosts $whoPosts)
 	{
 		//
 	}

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class adminController extends Controller
+class dashboardController extends Controller
 {
 	//
 	public function dashboard()
