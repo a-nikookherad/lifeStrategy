@@ -17,7 +17,7 @@ class CreateLessonPostsCategoriesTable extends Migration
 			$table->bigIncrements('id');
 			$table->string('title');
 			$table->timestamps();
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 		});
 	}
 

@@ -21,7 +21,7 @@ class CreateWhoPostsTable extends Migration
 			$table->string('title');
 			$table->integer('catID');
 			$table->text('description');
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 			$table->timestamps();
 		});
 	}

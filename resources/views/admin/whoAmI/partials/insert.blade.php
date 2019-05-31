@@ -1,4 +1,4 @@
-<form action="{{route("whoPosts.store")}}" class="form" enctype="multipart/form-data">
+<form action="{{route("whoPosts.store")}}" class="form" enctype="multipart/form-data" method="post">
     @csrf
 
     <div class="custom-file border">
@@ -6,12 +6,12 @@
         <label class="custom-file-label" for="customFile">Choose picture:</label>
     </div>
     <div class="form-group">
-        <label for="name">name:</label>
-        <input type="text" name="name" id="name" class="form-control">
+        <label for="title">name:</label>
+        <input type="text" name="title" id="title" class="form-control">
     </div>
     <div class="form-group">
-        <label for="coreValue">core value:</label>
-        <select name="coreValue" id="coreValue" class="form-control">
+        <label for="catID">category:</label>
+        <select name="catID" id="catID" class="form-control">
             @include('admin.whoAmI.partials.options',["whoPostsCategories"=>isset($whoPostsCategories)?$whoPostsCategories:[]])
         </select>
     </div>

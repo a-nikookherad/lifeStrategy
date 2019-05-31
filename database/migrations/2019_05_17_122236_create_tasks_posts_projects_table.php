@@ -16,7 +16,7 @@ class CreateTasksPostsProjectsTable extends Migration
 		Schema::create('tasks_posts_projects' , function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('title');
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 			$table->timestamps();
 		});
 	}

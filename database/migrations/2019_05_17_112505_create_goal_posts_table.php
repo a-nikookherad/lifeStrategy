@@ -26,7 +26,7 @@ class CreateGoalPostsTable extends Migration
 			$table->string('habit' , 127);
 			$table->text('details' , 127);
 			$table->timestamps();
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 		});
 	}
 

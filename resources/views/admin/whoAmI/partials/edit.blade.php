@@ -1,16 +1,17 @@
-<form action="{{route("whoPosts.store")}}" class="form" enctype="multipart/form-data">
+<form action="{{route("whoPosts.update",["whoPost"=>$whoPost->id])}}" class="form" enctype="multipart/form-data">
     @csrf
+    {{--@method("PUT")--}}
     <div class="custom-file border">
         <input type="file" class="custom-file-input " name="img" id="customFile">
         <label class="custom-file-label" for="customFile">Choose picture:</label>
     </div>
     <div class="form-group">
-        <label for="name">name:</label>
-        <input type="text" name="name" id="name" class="form-control" value="{{old("name",$whoPost->title)}}">
+        <label for="title">name:</label>
+        <input type="text" name="name" id="name" class="form-control" value="{{old("title",$whoPost->title)}}">
     </div>
     <div class="form-group">
         <label for="coreValue">core value:</label>
-        <select name="coreValue" id="coreValue" class="form-control">
+        <select name="catID" id="coreValue" class="form-control">
             @include('admin.whoAmI.partials.options',["whoPostsCategories"=>$whoPostsCategories])
         </select>
     </div>

@@ -18,7 +18,7 @@ class CreateTasksPostsTypesTable extends Migration
 			$table->dateTime('dateTime');
 			$table->boolean('reminder');
 			$table->timestamps();
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 		});
 	}
 

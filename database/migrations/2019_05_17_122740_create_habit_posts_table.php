@@ -22,7 +22,7 @@ class CreateHabitPostsTable extends Migration
 			$table->integer('type');
 			$table->text('details');
 			$table->timestamps();
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 		});
 	}
 

@@ -16,7 +16,7 @@ class CreateGoalPostAreaOfLivesTable extends Migration
 		Schema::create('goal_post_area_of_lives' , function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('title');
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 			$table->timestamps();
 		});
 	}

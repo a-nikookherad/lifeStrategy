@@ -6,6 +6,7 @@ use App\models\whoPost;
 use App\models\whoPostsCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class whosController extends Controller
@@ -29,7 +30,7 @@ class whosController extends Controller
 	public function create()
 	{
 		//
-		$whoPostsCategories = whoPostsCategory::all();
+		$whoPostsCategories = whoPostsCategory::select("id" , "title")->get();
 		return view("admin.whoAmI.partials.insert" , compact('whoPostsCategories'));
 	}
 
@@ -42,6 +43,18 @@ class whosController extends Controller
 	public function store(Request $request)
 	{
 		//
+		$newName = "img-" . date("Y-m-d-H-i-s") . "." . $request->file("img")->getClientOriginalExtension();
+		$request->file("img")->move(public_path("assets\img\uploads\\") , $newName);
+		$img = public_path("assets\img\uploads\\") . $newName;
+		$data = [
+			"userID" => 39 ,
+			"img" => $img ,
+			"title" => $request->input("title") ,
+			"catID" => $request->input("catID") ,
+			"description" => $request->input("description") ,
+		];
+		whoPost::insert($data);
+		return redirect()->back();
 	}
 
 	/**
@@ -66,7 +79,8 @@ class whosController extends Controller
 	public function edit(whoPost $whoPost)
 	{
 		//
-		$whoPostsCategories = whoPostsCategory::all();
+		$whoPostsCategories = whoPostsCategory::select("id" , "title")->get();
+
 		return view("admin.whoAmI.partials.edit" , compact(["whoPost" , "whoPostsCategories"]));
 	}
 
@@ -80,6 +94,7 @@ class whosController extends Controller
 	public function update(Request $request , whoPost $whoPost)
 	{
 		//
+		dd($request);
 	}
 
 	/**

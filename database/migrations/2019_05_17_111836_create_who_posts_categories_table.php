@@ -16,7 +16,7 @@ class CreateWhoPostsCategoriesTable extends Migration
 		Schema::create('who_posts_categories' , function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('title');
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 			$table->timestamps();
 		});
 	}

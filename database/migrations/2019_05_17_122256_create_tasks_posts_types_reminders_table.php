@@ -16,7 +16,7 @@ class CreateTasksPostsTypesRemindersTable extends Migration
 		Schema::create('tasks_posts_types_reminders' , function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('title');
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 			$table->timestamps();
 		});
 	}

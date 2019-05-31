@@ -22,7 +22,7 @@ class CreateLessonPostsTable extends Migration
 			$table->integer('category');
 			$table->string('source');
 			$table->timestamps();
-			$table->string('status' , 15);
+			$table->string('status' , 15)->default('active');
 		});
 	}
 
