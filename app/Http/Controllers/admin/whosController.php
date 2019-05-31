@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\models\whoPost;
+use App\models\whoPostsCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class whosController extends Controller
 {
@@ -27,6 +29,8 @@ class whosController extends Controller
 	public function create()
 	{
 		//
+		$whoPostsCategories = whoPostsCategory::all();
+		return view("admin.whoAmI.partials.insert" , compact('whoPostsCategories'));
 	}
 
 	/**
@@ -46,10 +50,11 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(whoPosts $whoPosts)
+	public function show(whoPost $whoPost)
 	{
 		//
-
+		$whoPosts = whoPost::all();
+		return view("admin.whoAmI.partials.list" , compact("whoPosts"));
 	}
 
 	/**
@@ -58,9 +63,11 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(whoPosts $whoPosts)
+	public function edit(whoPost $whoPost)
 	{
 		//
+		$whoPostsCategories = whoPostsCategory::all();
+		return view("admin.whoAmI.partials.edit" , compact(["whoPost" , "whoPostsCategories"]));
 	}
 
 	/**
@@ -70,7 +77,7 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request , whoPosts $whoPosts)
+	public function update(Request $request , whoPost $whoPost)
 	{
 		//
 	}
@@ -81,8 +88,16 @@ class whosController extends Controller
 	 * @param  \App\models\whoPost $whoPost
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(whoPosts $whoPosts)
+	public function destroy(whoPost $whoPost)
 	{
 		//
+	}
+
+	public function ajax(Request $request)
+	{
+		$param = $request->param;
+		$catID = whoPostsCategory::select("id")->where('title' , $param)->first();
+		$whoPosts = whoPost::where("catID" , $catID->id)->get();
+		return view("admin.whoAmI.partials.list" , compact('whoPosts'));
 	}
 }

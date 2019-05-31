@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\models\whoPost;
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -17,12 +18,15 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class , function (Faker $faker) {
+$factory->define(whoPost::class , function (Faker $faker) {
 	return [
-		'name' => $faker->name ,
-		'email' => $faker->unique()->safeEmail ,
-		'email_verified_at' => now() ,
-		'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' , // password
-		'remember_token' => Str::random(10) ,
+		'userID' => $faker->numberBetween(1 , 50) ,
+		'img' => $faker->lastName ,
+		'title' => $faker->name ,
+		'catID' => rand(2 , 7) ,
+		'description' => Str::random(255) , // password
+		'status' => "active" ,
+		'created_at' => now() ,
+		'updated_at' => now() ,
 	];
 });
