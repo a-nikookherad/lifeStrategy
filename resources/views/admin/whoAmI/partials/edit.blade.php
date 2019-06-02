@@ -1,6 +1,6 @@
-<form action="{{route("whoPosts.update",["whoPost"=>$whoPost->id])}}" class="form" enctype="multipart/form-data">
+<form action="{{route("whoPosts.update",[$whoPost->id])}}" class="form" enctype="multipart/form-data">
     @csrf
-    {{--@method("PUT")--}}
+    @method("PUT")
     <div class="custom-file border">
         <input type="file" class="custom-file-input " name="img" id="customFile">
         <label class="custom-file-label" for="customFile">Choose picture:</label>

@@ -1,8 +1,7 @@
 <?php
 /*--------------------------------admin Route-----------------------------------*/
 Route::get('/dashboard' , 'dashboardController@dashboard')->name("dashboard");
-
-/*Route::group(['prefix' => 'users/'] , function () {
+Route::group(['prefix' => 'users/'] , function () {
 	//users user stuff
 	Route::get('list' , 'usersController@index')->name('users.list')->middleware('users');
 	Route::post('login' , 'usersController@login_post')->name('users.login_post');
@@ -12,14 +11,21 @@ Route::get('/dashboard' , 'dashboardController@dashboard')->name("dashboard");
 	Route::post('edit/{id}' , 'usersController@edit_post')->name('users.edit_post')->middleware('users');
 	Route::get('log_out' , 'usersController@log_out')->name('users.logout')->middleware('users');
 	Route::get('delete/{id}' , 'usersController@delete')->name('users.delete')->middleware('users');
-});*/
-Route::group(['prefix' => 'dashboard/' , "namespace" => "admin"] , function () {
-	Route::resource("whoPosts" , "whosController");
-	Route::post("whoPosts/ajax" , "whosController@ajax")->name("whosAjax");
+});
+Route::group(["prefix" => "whoAmI/" , "namespace" => "admin"] , function () {
+	Route::get("index" , "whosController@index")->name("who.list");
+	Route::get("show" , "whosController@show")->name("who.show");
+	Route::get("create" , "whosController@create")->name("who.create");
+	Route::post("store" , "whosController@store")->name("who.store");
+	Route::get("edit/{id}" , "whosController@edit")->name("who.edit");
+	Route::post("update" , "whosController@update")->name("who.update");
+	Route::get("delete/{id}" , "whosController@delete")->name("who.delete");
+	Route::post("ajax" , "whosController@ajax")->name("who.ajax");
 });
 
+
 /*--------------------------------default Route-----------------------------------*/
-Route::get('/' , 'homeController@home')->name("home");
+Route::get('/' , 'HomeController@home')->name("home");
 
 Auth::routes();
 

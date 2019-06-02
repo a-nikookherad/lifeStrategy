@@ -35,142 +35,67 @@
         </li>
     </ul>
     <div class="tab-content w-100" id="pills-tabContent">
-
+        {{--core value tab--}}
         <div class="tab-pane fade show active" id="coreValues" role="tabpanel" aria-labelledby="pills-home-tab">
-            {{-- include list by ajax --}}
-            <div id="coreValue_response"></div>
+            <div id="coreValue_response">
+                {{-- response list by ajax --}}
+            </div>
             <button class="btn btn-outline-success float-right btn-circle " onclick="addModal()" data-toggle="modal"
                     data-target="#myModal"><i class="fa fa-plus"></i>
             </button>
-
         </div>
 
+        {{--strengths tab--}}
         <div class="tab-pane fade" id="strengths" role="tabpanel" aria-labelledby="pills-profile-tab">
-            {{-- include list by ajax --}}
-            <div id="strengths_response"></div>
+            <div id="strengths_response">
+                {{-- response list by ajax --}}
+            </div>
             <button class="btn btn-outline-success float-right btn-circle " onclick="addModal()" data-toggle="modal"
                     data-target="#myModal"><i class="fa fa-plus"></i>
             </button>
         </div>
+
+        {{--weaknesses tab--}}
         <div class="tab-pane fade" id="weaknesses" role="tabpanel" aria-labelledby="pills-contact-tab">
-            {{-- include list by ajax --}}
-            <div id="weaknesses_response"></div>
+            <div id="weaknesses_response">
+                {{-- response list by ajax --}}
+            </div>
             <button class="btn btn-outline-success float-right btn-circle" onclick="addModal()" data-toggle="modal"
                     data-target="#myModal"><i class="fa fa-plus"></i>
             </button>
         </div>
+
+        {{--opportunities tab--}}
         <div class="tab-pane fade" id="opportunities" role="tabpanel" aria-labelledby="pills-contact-tab">
-            {{-- include list by ajax --}}
-            <div id="opportunities_response"></div>
+            <div id="opportunities_response">
+                {{-- response list by ajax --}}
+            </div>
             <button class="btn btn-outline-success float-right btn-circle" onclick="addModal()" data-toggle="modal"
                     data-target="#myModal"><i class="fa fa-plus"></i>
             </button>
         </div>
+
+        {{--obstacles tab--}}
         <div class="tab-pane fade" id="obstacles" role="tabpanel" aria-labelledby="pills-contact-tab">
-            {{-- include list by ajax --}}
-            <div id="obstacles_response"></div>
+            <div id="obstacles_response">
+                {{-- response list by ajax --}}
+            </div>
             <button class="btn btn-outline-success float-right btn-circle" onclick="addModal()" data-toggle="modal"
                     data-target="#myModal"><i class="fa fa-plus"></i>
             </button>
         </div>
+
+        {{--skills tab--}}
         <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="pills-contact-tab">
-            {{-- include list by ajax --}}
-            <div id="skills_response"></div>
+            <div id="skills_response">
+                {{-- response list by ajax --}}
+            </div>
             <button class="btn btn-outline-success float-right btn-circle" onclick="addModal()" data-toggle="modal"
                     data-target="#myModal"><i class="fa fa-plus"></i>
             </button>
         </div>
     </div>
-    @push("scripts")
-        <script>
-            $(document).ready(function coreValue() {
-                $.ajax({
-                    url: "{{route("whosAjax")}}",
-                    type: "post",
-                    data: {param: 'coreValues'},
-                    success: function (result) {
-                        $("#coreValue_response").html(result);
-                    }
-                });
-            })
 
-            function strengths() {
-                $.ajax({
-                    url: "{{route("whosAjax")}}",
-                    type: "post",
-                    data: {param: 'strengths'},
-                    success: function (result) {
-                        $("#strengths_response").html(result);
-                    }
-                });
-            }
-
-            function weaknesses() {
-                $.ajax({
-                    url: "{{route("whosAjax")}}",
-                    type: "post",
-                    data: {param: 'weaknesses'},
-                    success: function (result) {
-                        $("#weaknesses_response").html(result);
-                    }
-                });
-            }
-
-            function opportunities() {
-                $.ajax({
-                    url: "{{route("whosAjax")}}",
-                    type: "post",
-                    data: {param: 'opportunities'},
-                    success: function (result) {
-                        $("#opportunities").html(result);
-                    }
-                });
-            }
-
-            function obstacles() {
-                $.ajax({
-                    url: "{{route("whosAjax")}}",
-                    type: "post",
-                    data: {param: 'obstacles'},
-                    success: function (result) {
-                        $("#obstacles_response").html(result);
-                    }
-                });
-            }
-
-            function skills() {
-                $.ajax({
-                    url: "{{route("whosAjax")}}",
-                    type: "post",
-                    data: {param: 'skills'},
-                    success: function (result) {
-                        $("#skills_response").html(result);
-                    }
-                });
-            }
-
-            function editModal(id) {
-                $.ajax({
-                    url: "/dashboard/whoPosts/" + id + "/edit",
-                    success: function (result) {
-                        $("#editModalBody").html(result);
-                    }
-                });
-
-            }
-
-            function addModal() {
-                $.ajax({
-                    url: "{{route("whoPosts.create")}}",
-                    success: function (result) {
-                        $("#insertModalBody").html(result);
-                    }
-                });
-
-            }
-        </script>
-    @endpush
-    {{-- end include list by ajax --}}
     {{--start edit modal--}}
     <div id="form_edit_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -200,4 +125,94 @@
     </div>
     {{--end modal--}}
 
+    {{--scripts--}}
+    @push("scripts")
+        <script>
+            $(document).ready(function coreValue() {
+                $.ajax({
+                    url: "{{route("who.ajax")}}",
+                    type: "post",
+                    data: {param: 'coreValues'},
+                    success: function (result) {
+                        $("#coreValue_response").html(result);
+                    }
+                });
+            })
+
+            function strengths() {
+                $.ajax({
+                    url: "{{route("who.ajax")}}",
+                    type: "post",
+                    data: {param: 'strengths'},
+                    success: function (result) {
+                        $("#strengths_response").html(result);
+                    }
+                });
+            }
+
+            function weaknesses() {
+                $.ajax({
+                    url: "{{route("who.ajax")}}",
+                    type: "post",
+                    data: {param: 'weaknesses'},
+                    success: function (result) {
+                        $("#weaknesses_response").html(result);
+                    }
+                });
+            }
+
+            function opportunities() {
+                $.ajax({
+                    url: "{{route("who.ajax")}}",
+                    type: "post",
+                    data: {param: 'opportunities'},
+                    success: function (result) {
+                        $("#opportunities").html(result);
+                    }
+                });
+            }
+
+            function obstacles() {
+                $.ajax({
+                    url: "{{route("who.ajax")}}",
+                    type: "post",
+                    data: {param: 'obstacles'},
+                    success: function (result) {
+                        $("#obstacles_response").html(result);
+                    }
+                });
+            }
+
+            function skills() {
+                $.ajax({
+                    url: "{{route("who.ajax")}}",
+                    type: "post",
+                    data: {param: 'skills'},
+                    success: function (result) {
+                        $("#skills_response").html(result);
+                    }
+                });
+            }
+
+            function editModal(id) {
+                $.ajax({
+                    url: "/whoAmI/edit/" + id + "",
+                    success: function (result) {
+                        $("#editModalBody").html(result);
+                    }
+                });
+
+            }
+
+            function addModal() {
+                $.ajax({
+                    url: "{{route("who.create")}}",
+                    success: function (result) {
+                        $("#insertModalBody").html(result);
+                    }
+                });
+
+            }
+        </script>
+    @endpush
 @endsection

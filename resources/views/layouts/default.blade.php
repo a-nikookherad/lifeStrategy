@@ -19,9 +19,8 @@
 
 <!-- Custom styles for this template -->
     <link href="{{"css/grayscale.min.css"}}" rel="stylesheet">
-    <style>
-
-    </style>
+    @stack("css_file")
+    @stack("styles")
 </head>
 
 <body id="page-top">
@@ -180,7 +179,8 @@
 
 <!-- Custom scripts for this template -->
 <script src="{{asset("js/grayscale.min.js")}}"></script>
-
+@stack("js_file")
+@stack("scripts")
 </body>
 
 </html>

@@ -15,8 +15,8 @@
     <!-- THEME STYLES-->
     <link href="{{asset("admin/assets/css/main.min.css")}}" rel="stylesheet"/>
     <!-- PAGE LEVEL STYLES-->
+    @stack("css_file")
     @stack("styles")
-    @stack("header_js")
 </head>
 
 <body class="fixed-navbar">
@@ -217,7 +217,7 @@
                 </li>--}}
                 {{--<li class="heading">FEATURES</li>--}}
                 <li>
-                    <a href="{{route("whoPosts.index")}}"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                    <a href="{{route("who.list")}}"><i class="sidebar-item-icon ti-user"></i>
                         <span class="nav-label">Who Am I?</span><i class="fa fa-angle-left arrow"></i></a>
                     {{--                    <ul class="nav-2-level collapse">
                                             <li>
@@ -250,19 +250,19 @@
                                         </ul>--}}
                 </li>
                 <li>
-                    <a href="dashboard"><i class="sidebar-item-icon fa fa-edit"></i>
+                    <a href="dashboard"><i class="sidebar-item-icon ti-target"></i>
                         <span class="nav-label">Goals</span><i class="fa fa-angle-left arrow"></i></a>
                 </li>
                 <li>
-                    <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
+                    <a href="javascript:;"><i class="sidebar-item-icon ti-timer"></i>
                         <span class="nav-label">Tasks</span><i class="fa fa-angle-left arrow"></i></a>
                 </li>
                 <li>
-                    <a href="javascript:;"><i class="sidebar-item-icon fa fa-bar-chart"></i>
+                    <a href="javascript:;"><i class="sidebar-item-icon ti-loop"></i>
                         <span class="nav-label">Habits</span><i class="fa fa-angle-left arrow"></i></a>
                 </li>
                 <li>
-                    <a href="javascript:;"><i class="sidebar-item-icon fa fa-map"></i>
+                    <a href="javascript:;"><i class="sidebar-item-icon ti-book"></i>
                         <span class="nav-label">Lessons</span><i class="fa fa-angle-left arrow"></i></a>
                 </li>
                 <li class="heading">OPTIONS</li>
@@ -472,6 +472,7 @@
 <script src="{{asset("admin/assets/js/app.min.js")}}" type="text/javascript"></script>
 <!-- PAGE LEVEL SCRIPTS-->
 <script src="{{asset("admin/assets/js/scripts/dashboard_1_demo.js")}}" type="text/javascript"></script>
+@stack("js_file")
 @stack("scripts")
 </body>
 

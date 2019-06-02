@@ -2,45 +2,34 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Requests\whosReq;
 use App\models\whoPost;
 use App\models\whoPostsCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class whosController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+
 	public function index()
 	{
 		//
-		return view("admin.whoAmI.index");
+		$whoPostsCategories = whoPostsCategory::select("id" , "title")->get();
+		return view("admin.whoAmI.index" , compact('whoPostsCategories'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+
 	public function create()
 	{
 		//
-		$whoPostsCategories = whoPostsCategory::select("id" , "title")->get();
-		return view("admin.whoAmI.partials.insert" , compact('whoPostsCategories'));
+
+		return view("admin.whoAmI.partials.insert");
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
+
+	public function store(whosReq $request)
 	{
 		//
 		$newName = "img-" . date("Y-m-d-H-i-s") . "." . $request->file("img")->getClientOriginalExtension();
@@ -57,62 +46,42 @@ class whosController extends Controller
 		return redirect()->back();
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\models\whoPost $whoPost
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show(whoPost $whoPost)
+
+	public function show()
 	{
 		//
 		$whoPosts = whoPost::all();
 		return view("admin.whoAmI.partials.list" , compact("whoPosts"));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\models\whoPost $whoPost
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit(whoPost $whoPost)
+
+	public function edit($id)
 	{
 		//
-		$whoPostsCategories = whoPostsCategory::select("id" , "title")->get();
+		$whoPost = whoPost::where("id" , $id)->first();
 
-		return view("admin.whoAmI.partials.edit" , compact(["whoPost" , "whoPostsCategories"]));
+		return view("admin.whoAmI.partials.edit" , compact("whoPost"));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @param  \App\models\whoPost $whoPost
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request , whoPost $whoPost)
+
+	public function update(whosReq $request , $id)
 	{
 		//
 		dd($request);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\models\whoPost $whoPost
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy(whoPost $whoPost)
+
+	public function delete(whosReq $whoPost , $id)
 	{
 		//
+		dd($id);
 	}
 
-	public function ajax(Request $request)
+	public function ajax(whosReq $request)
 	{
 		$param = $request->param;
 		$catID = whoPostsCategory::select("id")->where('title' , $param)->first();
 		$whoPosts = whoPost::where("catID" , $catID->id)->get();
-		return view("admin.whoAmI.partials.list" , compact('whoPosts'));
+		return view("admin.whoAmI.ajax.list" , compact('whoPosts'));
 	}
 }

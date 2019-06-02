@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
 	 * @var array
 	 */
 	protected $except = [
-		'dashboard/whoPosts/ajax'
+		'whoAmI/ajax' ,
+		'whoAmI/edit/{id}' ,
 	];
 }
