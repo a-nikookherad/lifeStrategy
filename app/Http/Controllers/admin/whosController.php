@@ -46,7 +46,6 @@ class whosController extends Controller
 		return redirect()->back();
 	}
 
-
 	public function show()
 	{
 		//
