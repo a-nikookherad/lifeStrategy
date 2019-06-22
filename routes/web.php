@@ -12,15 +12,17 @@ Route::group(['prefix' => 'users/'] , function () {
 	Route::get('log_out' , 'usersController@log_out')->name('users.logout')->middleware('users');
 	Route::get('delete/{id}' , 'usersController@delete')->name('users.delete')->middleware('users');
 });
+
 Route::group(["prefix" => "whoAmI/" , "namespace" => "admin"] , function () {
-	Route::get("index" , "whosController@index")->name("who.list");
+	Route::get("list" , "whosController@list")->name("who.list");
 	Route::get("show" , "whosController@show")->name("who.show");
 	Route::get("create" , "whosController@create")->name("who.create");
 	Route::post("store" , "whosController@store")->name("who.store");
 	Route::get("edit/{id}" , "whosController@edit")->name("who.edit");
 	Route::post("update" , "whosController@update")->name("who.update");
 	Route::get("delete/{id}" , "whosController@delete")->name("who.delete");
-	Route::post("ajax" , "whosController@ajax")->name("who.ajax");
+	Route::post("whoAjax" , "whosController@ajax")->name("who.ajax");
+	Route::get("whoModal/{whoID}" , "whosController@whoModal")->name("who.modal");
 });
 
 

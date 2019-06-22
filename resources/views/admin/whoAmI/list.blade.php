@@ -10,27 +10,32 @@
                aria-controls="pills-coreValues" aria-selected="true">core values</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" onclick="strengths()" id="pills-profile-tab" data-toggle="pill" href="#strengths"
+            <a class="nav-link" onclick="getData('strengths_response','strengths')" id="pills-profile-tab"
+               data-toggle="pill" href="#strengths"
                role="tab"
                aria-controls="pills-strengths" aria-selected="false">strengths</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" onclick="weaknesses()" id="pills-contact-tab" data-toggle="pill" href="#weaknesses"
+            <a class="nav-link" onclick="getData('weaknesses_response','weaknesses')" id="pills-contact-tab"
+               data-toggle="pill" href="#weaknesses"
                role="tab"
                aria-controls="pills-weaknesses" aria-selected="false">weaknesses</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" onclick="opportunities()" id="pills-profile-tab" data-toggle="pill"
+            <a class="nav-link" onclick="getData('opportunities_response','opportunities')" id="pills-profile-tab"
+               data-toggle="pill"
                href="#opportunities" role="tab"
                aria-controls="pills-opportunities" aria-selected="false">opportunities</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" onclick="obstacles()" id="pills-contact-tab" data-toggle="pill" href="#obstacles"
+            <a class="nav-link" onclick="getData('obstacles-response','obstacles')" id="pills-contact-tab"
+               data-toggle="pill" href="#obstacles"
                role="tab"
                aria-controls="pills-obstacles" aria-selected="false">obstacles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" onclick="skills()" id="pills-contact-tab" data-toggle="pill" href="#skills" role="tab"
+            <a class="nav-link" onclick="getData('skills-response','skills')" id="pills-contact-tab" data-toggle="pill"
+               href="#skills" role="tab"
                aria-controls="pills-skills" aria-selected="false">skills</a>
         </li>
     </ul>
@@ -111,18 +116,7 @@
     {{--end modal--}}
     {{--start insert modal--}}
 
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-info text-center">
-                    add form
-                </div>
-                <div class="modal-body" id="insertModalBody">
-                    @include("admin.whoAmI.insert")
-                </div>
-            </div>
-        </div>
-    </div>
+
     {{--end modal--}}
     @push('css_file')
         <link rel="stylesheet" href="{{asset("css/dropzone.css")}}">
@@ -144,80 +138,26 @@
                 });
             })
 
-            function strengths() {
+            function getData(responseID, param) {
                 $.ajax({
                     url: "{{route("who.ajax")}}",
                     type: "post",
-                    data: {param: 'strengths'},
+                    data: {param: param},
                     success: function (result) {
-                        $("#strengths_response").html(result);
+                        $("#" + responseID).html(result);
                     }
                 });
             }
 
-            function weaknesses() {
+            function whoModal(id = 0) {
                 $.ajax({
-                    url: "{{route("who.ajax")}}",
-                    type: "post",
-                    data: {param: 'weaknesses'},
-                    success: function (result) {
-                        $("#weaknesses_response").html(result);
-                    }
-                });
-            }
-
-            function opportunities() {
-                $.ajax({
-                    url: "{{route("who.ajax")}}",
-                    type: "post",
-                    data: {param: 'opportunities'},
-                    success: function (result) {
-                        $("#opportunities").html(result);
-                    }
-                });
-            }
-
-            function obstacles() {
-                $.ajax({
-                    url: "{{route("who.ajax")}}",
-                    type: "post",
-                    data: {param: 'obstacles'},
-                    success: function (result) {
-                        $("#obstacles_response").html(result);
-                    }
-                });
-            }
-
-            function skills() {
-                $.ajax({
-                    url: "{{route("who.ajax")}}",
-                    type: "post",
-                    data: {param: 'skills'},
-                    success: function (result) {
-                        $("#skills_response").html(result);
-                    }
-                });
-            }
-
-            function editModal(id) {
-                $.ajax({
-                    url: "/whoAmI/edit/" + id + "",
+                    url: "/whoAmI/whoModal/" + id + "",
                     success: function (result) {
                         $("#editModalBody").html(result);
                     }
                 });
-
             }
 
-            function addModal() {
-                $.ajax({
-                    url: "{{route("who.create")}}",
-                    success: function (result) {
-                        $("#insertModalBody").html(result);
-                    }
-                });
-
-            }
         </script>
     @endpush
 @endsection

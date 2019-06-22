@@ -13,21 +13,18 @@ use Illuminate\Support\Facades\DB;
 class whosController extends Controller
 {
 
-	public function index()
+	public function list()
 	{
 		//
 		$whoPostsCategories = whoPostsCategory::select("id" , "title")->get();
-		return view("admin.whoAmI.index" , compact('whoPostsCategories'));
+		return view("admin.whoAmI.list" , compact('whoPostsCategories'));
 	}
-
 
 	public function create()
 	{
 		//
-
-		return view("admin.whoAmI.partials.insert");
+		return view("admin.whoAmI.partials.whoModal");
 	}
-
 
 	public function store(whosReq $request)
 	{
@@ -50,25 +47,22 @@ class whosController extends Controller
 	{
 		//
 		$whoPosts = whoPost::all();
-		return view("admin.whoAmI.partials.list" , compact("whoPosts"));
+		return view("admin.whoAmI.partials.show" , compact("whoPosts"));
 	}
-
 
 	public function edit($id)
 	{
 		//
-		$whoPost = whoPost::where("id" , $id)->first();
+		$whoPost = whoPost::find($id);
 
-		return view("admin.whoAmI.partials.edit" , compact("whoPost"));
+		return view("admin.whoAmI.partials.whoModal" , compact("whoPost"));
 	}
-
 
 	public function update(whosReq $request , $id)
 	{
 		//
 		dd($request);
 	}
-
 
 	public function delete(whosReq $whoPost , $id)
 	{
@@ -81,6 +75,6 @@ class whosController extends Controller
 		$param = $request->param;
 		$catID = whoPostsCategory::select("id")->where('title' , $param)->first();
 		$whoPosts = whoPost::where("catID" , $catID->id)->get();
-		return view("admin.whoAmI.ajax.list" , compact('whoPosts'));
+		return view("admin.whoAmI.ajax.show" , compact('whoPosts'));
 	}
 }
