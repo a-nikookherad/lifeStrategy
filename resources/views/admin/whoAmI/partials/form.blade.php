@@ -1,8 +1,4 @@
 @csrf
-<div class="custom-file border">
-    <input type="file" class="custom-file-input " name="img" id="customFile">
-    <label class="custom-file-label" for="customFile">Choose picture:</label>
-</div>
 <div class="form-group">
     <label for="title">name:</label>
     <input type="text" name="title" id="title" class="form-control">
