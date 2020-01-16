@@ -169,7 +169,7 @@ class Admin extends Component {
       this.refs.mainPanel.scrollTop = 0;
     }
   }
-  render() {
+/*   render() {
     return (
       <div className="wrapper">
       console.log("here")
@@ -197,7 +197,7 @@ class Admin extends Component {
         </div>
       </div>
     );
-  }
+  } */
 }
 
 export default Admin;
